@@ -29,9 +29,9 @@ udisk=$(df -m | grep "/dev/" | grep -v "/boot" | awk '{u += $3} END {print u}')
 pdisk=$(df -m | grep "/dev/" | grep -v "/boot" | awk '{u += $3} {t += $2} END {printf("%d"), u/t*100}')
 
 #CPU load -> user load + system load
-cpul=$(vmstat 1 2 | tail -1 | awk '{printf $15}')
-cpu_op=$(expr 00 - $cpul)
-cpu_fin=$(printf "%.1f" $cpu_op)
+cpuf=$(vmstat 1 2 | tail -1 | awk '{print $15}')
+cpul=$(printf "%.2f" $(echo "100 - $cpuf" | bc))
+
 
 #Last boot
 lb=$(who -b | awk '$1 == "system" {print $3 " " $4}')
