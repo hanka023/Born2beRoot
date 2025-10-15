@@ -5,7 +5,7 @@
 
 
 
-#!/bin/bashvcpu
+#!/bin/bash
 
 #architecture
 arch=$(uname -a)
